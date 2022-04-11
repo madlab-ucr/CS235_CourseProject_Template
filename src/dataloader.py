@@ -5,6 +5,7 @@ Note: This is just an example dataloader, you should customize this for your pro
 If you are doing a traditional ML project (not deep learning), you dataloader will look quite similar to this one.
 If you are doing a deep learning project you'll likely need data generators to generate batches of data.
 '''
+
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
@@ -27,6 +28,8 @@ def z_normalize_features(data):
     
 
 def load_data():
+
+    # Example dataset used int this whole demo
     DATA_PATH = os.getcwd()+"/data/HTRU_2.csv"
     df = pd.read_csv(DATA_PATH)
 

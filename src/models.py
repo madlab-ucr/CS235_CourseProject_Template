@@ -126,10 +126,13 @@ class LogisticRegressionClassifierFromScratch(object):
         # Calculating presictions/y_hat.
         preds = self.sigmoid(np.dot(X, w) + b)
         
+        
         # Empty List to store predictions.
         pred_class = []
         # if y_pred >= 0.5 --> round up to 1
         # if y_pred < 0.5 --> round up to 0
         pred_class = [1 if i > threshold else 0 for i in preds]
+
+        pred_proba = np.concatenate((1-preds, preds), axis=1)
         
-        return np.array(pred_class)
+        return np.array(pred_class), pred_proba
