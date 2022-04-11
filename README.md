@@ -18,7 +18,7 @@ _For comparing YOUR implementation against a baseline? **Yes**. You can use the 
 
 _You are not expected to code every single neuron from scratch, so **YES**. You can use popular deep learning frameworks to - 1. design your custom neural networks and build your data generators, 2.  use some existing, pretrained networks for transfer learning or as a baseline to cmapre your custom network against, 3. use built-in optimizers (like Adam, SGD, RMSProp, etc) for back propagation, 4. use tensorboard to monitor your training._
 
-<b> Can I customize this template to suite my project? </b>
+<b> Can I customize this template to suit my project? </b>
 
 _Absolutely, **yes**. The minimum modules required are - dataloader.py, models.py, driver.py. You could additionally add utils.py, eda.ipynb as shown in this repo._
 
