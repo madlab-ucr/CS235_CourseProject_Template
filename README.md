@@ -1,8 +1,6 @@
 # CS235 Course Project Starter
 
-# CS235: A generic project submission template
-
-A bare-bones project template for the class project. 
+A bare-bones project template for course project submission. 
 
 1. **src/dataloader.py** - Loads and preprocesses your _raw data_ and converts it into a _dataset_ consiting of train-validation-test sets. Returns said train-validation-test sets.
 2. **src/models.py** - Builds your models. Each model is a python class with _at least_ train() and predict() methods along with class attributes for model hyperparameters. Returns the class object.
