@@ -16,6 +16,8 @@ _For using ML models out-of-the-box? **No**. You are supposed to code them from 
 
 _For dataset preprocessing? **Yes**. You can use built-in methods for splitting your dataset into train-test sets, for dimensionality reduction (e.g. using PCA) as a preprocessing step, for visualizing your high-dimensional datasets in a 2-D/3-D plots (e.g. using t-SNE, UMAP, etc) during exploratory data analysis (EDA)._ 
 
+_For comparing your implementation against a baseline? **Yes**. You can use the scikit learn implementation as a baseline to compare your implementation against for correctness, speed, etc. 
+
 <b> Can I use Tensorflow Keras / PyTorch for ... ? </b>
 
 _You are not expected to code every single neuron from scratch, so **YES**. You can use popular deep learning frameworks to - 1. design your custom neural networks, 2.  use some existing, pretrained networks for transfer learning or as a baseline._
