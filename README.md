@@ -12,19 +12,16 @@ A bare-bones project template for the class project.
 ## FAQs:
 <b> Can I use Scikit-Learn for ... ? </b>
 
-_For using ML models out-of-the-box? **No**. You are supposed to code them from scratch*._ 
-
 _For dataset preprocessing? **Yes**. You can use built-in methods for splitting your dataset into train-test sets, for dimensionality reduction (e.g. using PCA) as a preprocessing step, for visualizing your high-dimensional datasets in a 2-D/3-D plots (e.g. using t-SNE, UMAP, etc) during exploratory data analysis (EDA)._ 
 
-_For comparing your implementation against a baseline? **Yes**. You can use the scikit learn implementation as a baseline to compare your implementation against for correctness, speed, etc._
+_For comparing YOUR implementation against a baseline? **Yes**. You can use the scikit-learn implementation as a baseline to compare your implementation against (for correctness, speed, etc.)_
 
-<b> Can I use Tensorflow Keras / PyTorch for ... ? </b>
+<b> Can I use Tensorflow Keras / PyTorch for deep learning? </b>
 
-_You are not expected to code every single neuron from scratch, so **YES**. You can use popular deep learning frameworks to - 1. design your custom neural networks, 2.  use some existing, pretrained networks for transfer learning or as a baseline._
+_You are not expected to code every single neuron from scratch, so **YES**. You can use popular deep learning frameworks to - 1. design your custom neural networks and build your data generators, 2.  use some existing, pretrained networks for transfer learning or as a baseline to cmapre your custom network against, 3. use built-in optimizers (like Adam, SGD, RMSProp, etc) for back propagation, 4. use tensorboard to monitor your training._
 
 <b> Can I customize this template to suite my project? </b>
 
-_Absolutely.
-The minimum modules required are - dataloader.py, models.py, driver.py. You could additionally add utils.py, eda.ipynb_
+_Absolutely, **yes**. The minimum modules required are - dataloader.py, models.py, driver.py. You could additionally add utils.py, eda.ipynb as shown in this repo._
 
-_(Note: Following this template will make your and the grader's life easy.)_
+_(Note: Following this template will make your and the grader's life easier.)_
