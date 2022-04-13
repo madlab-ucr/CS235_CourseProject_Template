@@ -16,10 +16,10 @@ _For comparing YOUR implementation against a baseline? **Yes**. You can use the 
 
 <b> Can I use Tensorflow Keras / PyTorch for deep learning? </b>
 
-_You are not expected to code every single neuron from scratch, so **YES**. You can use popular deep learning frameworks to - 1. design your custom neural networks and build your data generators, 2.  use some existing, pretrained networks for transfer learning or as a baseline to cmapre your custom network against, 3. use built-in optimizers (like Adam, SGD, RMSProp, etc) for back propagation, 4. use tensorboard to monitor your training._
+_You are not expected to code every single neuron from scratch, so **YES**. You can use popular deep learning frameworks to - 1. design your custom neural networks and build your data generators, 2.  use some existing, pretrained networks for transfer learning or as a baseline to compare your custom network against, 3. use built-in optimizers (like Adam, SGD, RMSProp, etc) for back propagation, 4. use tensorboard to monitor your training._
 
 <b> Can I customize this template to suit my project? </b>
 
-_Absolutely, **yes**. The minimum modules required are - dataloader.py, models.py, driver.py. You could additionally add utils.py, eda.ipynb as shown in this repo._
+_Absolutely, **yes**. The minimum modules required are - dataloader.py, models.py, driver.py. You could additionally have utils.py, eda.ipynb as shown in this repo. And you can have more scripts as needed by your project._
 
-_(Note: Following this template will make your and the grader's life easier.)_
+_(Note: Following this template as a group instead of dumping code in a collection of uncommented jupyter notebooks will make the grader's (and consequently your) life easier. Moreover, this repo demonstrates basic best practices for an end-to-end ML project.)_
