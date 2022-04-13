@@ -15,7 +15,7 @@ from sklearn.preprocessing import StandardScaler
 
 import os
 
-def transform_data(X, option='PCA', n_components=2):
+def do_pca(X, option='PCA', n_components=2):
     pca = PCA(n_components)
     X = pca.fit_transform(X)
 
@@ -50,7 +50,7 @@ def load_data():
     '''
     Dimensionality reduction of features
     '''
-    # data = transform_data(data)
+    # data = do_pca(data)
 
     return data, labels, class_names
 
@@ -64,7 +64,7 @@ def split_dataset(data, labels, train_ratio=0, validation_ratio=0, test_ratio=0)
                                                 shuffle=True, 
                                                 random_state=42)
         val_data, test_data, \
-            val_labels, test_labels = train_test_split(leftover_data, 
+            val_labels, test_labels = train_test_split(leftover_data, leftover_labels,
                                             test_size=test_ratio/(test_ratio + validation_ratio), 
                                             shuffle=True, 
                                             random_state=42) 
@@ -81,4 +81,18 @@ def split_dataset(data, labels, train_ratio=0, validation_ratio=0, test_ratio=0)
 
         return train_data, train_labels, test_data, test_labels, val_data, val_labels
 
-    
+def get_dataset(num_splits=2):
+    # Step 1: Load the dataset
+    data, labels, class_names  = load_data()
+    print(data.shape, labels.shape, class_names)
+
+    # Step 2: Split the dataset
+    if num_splits == 2:
+        train_data, train_labels, \
+            test_data, test_labels, _, _ = split_dataset(data, labels, test_ratio=0.3)
+        return  train_data, train_labels, test_data, test_labels, class_names
+    elif num_splits == 3:
+        train_data, train_labels, \
+            test_data, test_labels, \
+                val_data, val_labels = split_dataset(data, labels, train_ratio = 0.8, validation_ratio = 0.1, test_ratio=0.1)
+        return train_data, train_labels, test_data, test_labels, val_data, val_labels, class_names

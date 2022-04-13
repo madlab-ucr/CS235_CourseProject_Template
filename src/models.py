@@ -136,3 +136,5 @@ class LogisticRegressionClassifierFromScratch(object):
         pred_proba = np.concatenate((1-preds, preds), axis=1)
         
         return np.array(pred_class), pred_proba
+
+    

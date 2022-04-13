@@ -9,29 +9,24 @@ Entry-point script for the project
 import matplotlib.pyplot as plt 
 import numpy as np
 from utils import plot_decision_boundary
-from dataloader import load_data, split_dataset, transform_data
+from dataloader import get_dataset
 from models import LogisticRegressionClassifierFromScratch
 from sklearn.linear_model import LogisticRegression
 from evaluate import generate_classification_report, plot_confusion_matrix, plot_roc_curve
 import os
 
+# # Step 1: Get the dataset
+train_data, train_labels, test_data, test_labels, class_names = get_dataset(num_splits=2)
 
-# Step 1: Load the dataset
-data, labels, class_names  = load_data()
-print(data.shape, labels.shape, class_names)
-
-# Step 2: Split the dataset into training and testing sets
-train_data, train_labels, test_data, test_labels, _, _ = split_dataset(data, labels, test_ratio=0.3)
-
-# Step 3a: Train a logistic regression model from sklearn
+# Step 2a: Train a logistic regression model from sklearn
 print("Logistic Regression model from scikit-learn as a baseline...")
 model = LogisticRegression().fit(train_data, train_labels)
 
-# Step 3b: Predict labels for test data
+# Step 2b: Predict labels for test data
 pred_labels = model.predict(test_data)
 pred_probas = model.predict_proba(test_data)
-print(pred_probas)
-# Step 3c: Evaluate predictions
+# print(pred_probas)
+# Step 2c: Evaluate predictions
 report = generate_classification_report(y_test=test_labels, y_pred=pred_labels, \
                                 class_names=class_names, \
                                 save_filepath=os.getcwd()+"/results/sklearn_cr.csv")
@@ -46,15 +41,15 @@ plot = plot_roc_curve(y_test=test_labels, y_pred_probas=pred_probas, \
 
 ##___________________________STOP HERE FOR MIDTERM REPORT___________________________________________
 
-# Step 4a: Train my logistic regression model
+# Step 3a: Train my logistic regression model
 print("My Logistic Regression")
 model = LogisticRegressionClassifierFromScratch(l1_penalty=0.0, epochs=100)
 model_params, losses = model.train(train_data, train_labels)
 
-# Step 4b: Predict labels for test data
+# Step 3b: Predict labels for test data
 pred_labels, pred_probas = model.predict(test_data, model_params)
-print(pred_probas)
-# Step 4c: Evaluate predictions
+# print(pred_probas)
+# Step 3c: Evaluate predictions
 report = generate_classification_report(y_test=test_labels, y_pred=pred_labels, \
                                 class_names=class_names, \
                                 save_filepath=os.getcwd()+"/results/mymodel_cr.csv")
