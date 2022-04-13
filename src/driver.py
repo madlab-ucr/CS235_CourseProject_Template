@@ -5,11 +5,11 @@ Entry-point script for the project
 
 '''
 
-#Importing required modules
+# # Importing required modules
 import matplotlib.pyplot as plt 
 import numpy as np
 from utils import plot_decision_boundary
-from dataloader import get_dataset
+from dataloader import get_dataset, split_dataset
 from models import LogisticRegressionClassifierFromScratch
 from sklearn.linear_model import LogisticRegression
 from evaluate import generate_classification_report, plot_confusion_matrix, plot_roc_curve
