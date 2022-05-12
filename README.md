@@ -1,7 +1,7 @@
 # CS235 Course Project Starter
 
 A bare-bones project template for course project submission. 
-
+0. **EDA.ipynb** - A notebook detailing exploratory data analysis. It is crucial to perform EDA before embarking on any machine learning journey. 
 1. **src/dataloader.py** - Loads and preprocesses your _raw data_ and converts it into a _dataset_ consiting of train-validation-test sets. Returns said train-validation-test sets.
 2. **src/models.py** - Builds your models. Each model is a python class with _at least_ train() and predict() methods along with class attributes for model hyperparameters. Returns the class object.
 3. **src/driver.py** - Entry-point script which calls the _dataloader_ to get train-val-test sets or generators and _models_ to get a model object to be trained using the train set.
