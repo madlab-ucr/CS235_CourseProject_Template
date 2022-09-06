@@ -25,6 +25,6 @@ _You are not expected to code every single neuron from scratch, so **YES**. You 
 
 <b> Can I customize this template to suit my project? </b>
 
-_Absolutely, **yes**. The minimum modules required are - dataloader.py, models.py, evaluate.py, driver.py. You could additionally have utils.py, EDA.ipynb as shown in this repo. And you can have more scripts as needed by your project._
+_Absolutely, **yes**. The minimum modules required are - dataloader.py, models.py, evaluate.py, driver.py. You could additionally have utils.py, EDA.ipynb as shown in this repo. And you can have more scripts as needed by your project AS LONG AS YOU DOCUMENT WHAT THEY ARE!_
 
 _(Note: Following this template as a group instead of dumping code in a collection of uncommented jupyter notebooks / scripts will make the grader's (and consequently your) life easier. Moreover, this repo demonstrates basic best practices for an end-to-end ML project.)_
