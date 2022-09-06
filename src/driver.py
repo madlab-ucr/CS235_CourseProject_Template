@@ -8,15 +8,21 @@ Entry-point script for the project
 # # Importing required modules
 import matplotlib.pyplot as plt 
 import numpy as np
-from utils import plot_decision_boundary
-from dataloader import get_dataset, split_dataset
+from dataloader import get_dataset
 from models import LogisticRegressionClassifierFromScratch
 from sklearn.linear_model import LogisticRegression
 from evaluate import generate_classification_report, plot_confusion_matrix, plot_roc_curve
 import os
 
+random_state = 42
+
 # # Step 1: Get the dataset
-train_data, train_labels, test_data, test_labels, class_names = get_dataset(num_splits=2)
+train_data, train_labels, train_indices, \
+    test_data, test_labels, test_indices, class_names = get_dataset(num_splits=2, random_state=random_state)
+
+## DEBUGGING
+# np.savetxt("/home/rgura001/CS235_CourseProject_Template/debugging/train_ids_{}.txt".format(random_state), train_indices, fmt='%i')
+# np.savetxt("/home/rgura001/CS235_CourseProject_Template/debugging/test_ids_{}.txt".format(random_state), test_indices, fmt='%i')
 
 # Step 2a: Train a logistic regression model from sklearn
 print("Logistic Regression model from scikit-learn as a baseline...")
@@ -43,7 +49,7 @@ plot = plot_roc_curve(y_test=test_labels, y_pred_probas=pred_probas, \
 
 # Step 3a: Train my logistic regression model
 print("My Logistic Regression")
-model = LogisticRegressionClassifierFromScratch(l1_penalty=0.0, epochs=100)
+model = LogisticRegressionClassifierFromScratch(l1_penalty=1e-3, epochs=100)
 model_params, losses = model.train(train_data, train_labels)
 
 # Step 3b: Predict labels for test data

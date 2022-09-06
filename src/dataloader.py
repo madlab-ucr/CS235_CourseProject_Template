@@ -6,6 +6,7 @@ If you are doing a traditional ML project (not deep learning), you dataloader wi
 If you are doing a deep learning project you'll likely need data generators to generate batches of data.
 '''
 
+import random
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
@@ -29,11 +30,11 @@ def z_normalize_features(data):
 
 def load_data():
 
-    # Example dataset used int this whole demo
+    # Example dataset used in this whole demo
     DATA_PATH = os.getcwd()+"/data/HTRU_2.csv"
     df = pd.read_csv(DATA_PATH)
 
-    data= df.drop(columns=['target_class']).values
+    data = df.drop(columns=['target_class']).values
     
     '''
     Z-normalize each feature
@@ -52,47 +53,71 @@ def load_data():
     '''
     # data = do_pca(data)
 
-    return data, labels, class_names
+    indices = list(range(len(data)))
+    # print(indices)
 
-def split_dataset(data, labels, train_ratio=0, validation_ratio=0, test_ratio=0):
+    return data, labels, class_names, indices
+
+def split_dataset(data, labels, indices, train_ratio=0, validation_ratio=0, test_ratio=0, random_state=42):
 
     if train_ratio and validation_ratio:  
         # Split in 3 -> train, validation and test  
         train_data, leftover_data, \
-            train_labels, leftover_labels = train_test_split(data, labels, 
+            train_labels, leftover_labels,\
+                train_indices, leftover_indices = train_test_split(data, labels, indices, 
                                                 test_size=1 - train_ratio, 
                                                 shuffle=True, 
-                                                random_state=42)
+                                                random_state=random_state)
         val_data, test_data, \
-            val_labels, test_labels = train_test_split(leftover_data, leftover_labels,
+            val_labels, test_labels,\
+                val_indices, test_indices = train_test_split(leftover_data, leftover_labels, leftover_indices,
                                             test_size=test_ratio/(test_ratio + validation_ratio), 
                                             shuffle=True, 
-                                            random_state=42) 
+                                            random_state=random_state) 
 
     else:
         # Split in 2 -> train and test 
         train_data, test_data, \
-            train_labels, test_labels = train_test_split(data, labels, 
+            train_labels, test_labels,\
+                train_indices, test_indices = train_test_split(data, labels, indices, 
                                                 test_size=test_ratio, 
                                                 shuffle=True, 
-                                                random_state=42)
+                                                random_state=random_state)
         val_data = None
         val_labels = None
+        val_indices = None
 
-        return train_data, train_labels, test_data, test_labels, val_data, val_labels
+        return train_data, train_labels, train_indices, \
+                test_data, test_labels, test_indices, \
+                val_data, val_labels, val_indices
 
-def get_dataset(num_splits=2):
+def get_dataset(num_splits=2, random_state=42):
+
     # Step 1: Load the dataset
-    data, labels, class_names  = load_data()
-    print(data.shape, labels.shape, class_names)
+    data, labels, class_names, indices  = load_data()
+    print(data.shape, labels.shape, class_names, len(indices))
 
     # Step 2: Split the dataset
     if num_splits == 2:
-        train_data, train_labels, \
-            test_data, test_labels, _, _ = split_dataset(data, labels, test_ratio=0.3)
-        return  train_data, train_labels, test_data, test_labels, class_names
+        train_data, train_labels, train_indices, \
+            test_data, test_labels, test_indices, \
+                _, _, _ = split_dataset(data, labels, indices, 
+                                            test_ratio=0.3, 
+                                            random_state=random_state
+                                        )
+
+        return  train_data, train_labels, train_indices, test_data, test_labels, test_indices, class_names
+
     elif num_splits == 3:
-        train_data, train_labels, \
-            test_data, test_labels, \
-                val_data, val_labels = split_dataset(data, labels, train_ratio = 0.8, validation_ratio = 0.1, test_ratio=0.1)
-        return train_data, train_labels, test_data, test_labels, val_data, val_labels, class_names
+        train_data, train_labels, train_indices, \
+            test_data, test_labels, test_indices, \
+                val_data, val_labels, val_indices = split_dataset(data, labels, indices,
+                                                        train_ratio = 0.8, 
+                                                        validation_ratio = 0.1, 
+                                                        test_ratio=0.1, 
+                                                        random_state=random_state
+                                                    )
+        return train_data, train_labels, train_indices, \
+                    test_data, test_labels, test_indices, \
+                    val_data, val_labels, val_indices, \
+                    class_names
